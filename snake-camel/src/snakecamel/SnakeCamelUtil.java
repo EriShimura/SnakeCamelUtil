@@ -15,14 +15,14 @@ public class SnakeCamelUtil {
 		StringBuilder sb = new StringBuilder();
 		int j = 0;
 		for (int i = 0; i < camelcase.length(); i++) {
-			char c = camelcase.charAt(i);
-			if (Character.isUpperCase(c)) {
-				sb.append(camelcase.substring(j, i));
-				if (sb.length() > 0) {
-					sb.append("_");
+			char c = camelcase.charAt(i);	// 今見てる文字が
+			if (Character.isUpperCase(c)) {	// 大文字だったら
+				sb.append(camelcase.substring(j, i));	// 前に大文字だったとこから今の地点までを+して
+				if (sb.length() > 0) {	// 一番はじめの大文字でなければ、
+					sb.append("_");		// _を追加して
 				}
-				sb.append(Character.toLowerCase(c));
-				j = i;
+				sb.append(Character.toLowerCase(c));	// 最後に感知した大文字を小文字になおして+する
+				j = i;	// jの位置訂正
 			}
 		}
 		sb.append(camelcase.substring(j));
