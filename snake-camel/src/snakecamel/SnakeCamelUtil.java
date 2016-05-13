@@ -3,15 +3,16 @@ package snakecamel;
 public class SnakeCamelUtil {
 
 	public static String snakeToCamelcase(String snake_case) {
-		String[] words = snake_case.split("_");
+		String[] words = deleteBlank(snake_case).toLowerCase().split("_"); // deleteBlankで空白除去
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < words.length; i++) {
-			sb.append(capitalize(words[i]));
+			if(!words[i].equals("")) sb.append(capitalize(words[i]));
 		}
 		return new String(sb);
 	}
 	 
 	public static String camelToSnakecase(String camelCase) {
+		camelCase = deleteBlank(camelCase); // 空白除去
 		StringBuilder sb = new StringBuilder();
 		int j = 0;
 		for (int i = 0; i < camelCase.length(); i++) {
@@ -41,5 +42,17 @@ public class SnakeCamelUtil {
 		char lowerFirst = Character.toLowerCase(first);
 		String rest = s.substring(1);
 		return lowerFirst + rest;
+	}
+	
+	// ================
+	// 空白除去メソッド追加
+	// ---------
+	// 空白" "でsplit(分割)し、分割したものを合わせれば空白なしの文字列になる
+	// ================
+	static String deleteBlank(String s){
+		StringBuilder sb = new StringBuilder();
+		String[] afterDelete = s.split(" "); // 空白で区切る
+		for(int i=0;i<afterDelete.length;i++) sb.append(afterDelete[i]); // 分割後の文字列をあわせる
+		return new String(sb);
 	}
 }
