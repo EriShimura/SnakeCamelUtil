@@ -24,8 +24,8 @@ public class SnakeCamelUtilTest {
 		{ assertThat(SnakeCamelUtil.snakeToCamelcase("abc_def_"), is("AbcDef")); }
 	
 	@Test
-	public void キャメルケースを渡した場合()
-		{ assertThat(SnakeCamelUtil.snakeToCamelcase("AbcDef"), is("Abcdef")); }
+	public void snakeToCamelcaseにキャメルケースを渡した場合()
+		{ assertThat(SnakeCamelUtil.snakeToCamelcase("AbcDef"), is("Abcdef")); } // 単語すべて小文字…そんなことする必要あるかわからないけど
 	
 	@Test
 	public void スネークでもキャメルでもない文字列を渡した場合_snake()
@@ -67,6 +67,12 @@ public class SnakeCamelUtilTest {
 	public void 余分な空白が途中に含まれている文字列を渡した場合()
 		{ assertThat(SnakeCamelUtil.camelToSnakecase("Abc De f"), is("abc_def")); }
 
+	////////////////////////////
+	//  other
+	////////////////////////////
+	
+	@Test
+	public void toLowerCaseの試し(){ assertThat("AsdFgH".toLowerCase(), is("asdfgh")); }
 }
 	
 	
